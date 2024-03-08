@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Counter from "./Counter";
+import Employee from "./Employee";
 
 function App() {
+  const [count , setCount] = useState (0)
+  
+  const incrementCount = () => setCount(count + 1)
+
+  let obj = {
+    title : "First Counter",
+    count , 
+    place : "Alakode"
+  }
+
+  let employee = [
+    {name :"Ajay Joy", place : "Kannur"},
+    { name :"Ann Maria", place : "Ernakulam"},
+    {name :"Unnimaya", place : "Palakad"}
+  ]
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <button onClick={incrementCount}>Add</button>
+    <Counter {...obj}/>
+    <Counter title='Second Counter' count = {count}/>
+    {employee.map( (emp , index ) => (
+         <Employee key = {index}  name = {emp.name} place = {emp.place }/>
+      ))}
     </div>
   );
 }
